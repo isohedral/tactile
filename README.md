@@ -10,4 +10,4 @@ I will provide more complete documentation here in the near future.  In the mean
 [glfw]: https://www.glfw.org/
 [nanovg]: https://github.com/memononen/nanovg
 [imgui]: https://github.com/ocornut/imgui
-[tactilejs]: https://github.com/isohedral/tactilejs
+[tactilejs]: https://github.com/isohedral/tactile-js
