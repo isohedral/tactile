@@ -7,7 +7,11 @@ I will provide more complete documentation here in the near future.  In the mean
 
 ## Building Tactile
 
-The library is small and self-contained, and no special build instructions are required.  Simply make sure that `tactile.hpp` is in your build path, and that you can find the `GLM` headers.  Then compile `tactile.cpp` in with the rest of your code.  There's no need to worry explicitly about `tiling_arraydecl.inc`—that file is included in `tactile.cpp`.
+The library is small and self-contained, and no special build instructions are required.  Simply make sure that `tactile.hpp` is in your include path, and that you can find the `GLM` headers.  Then compile `tactile.cpp` in with the rest of your code.  There's no need to worry explicitly about `tiling_arraydecl.inc`—that file is included by `tactile.cpp`.
+
+## Using Tactile
+
+In order to understand how to use Tactile, it might first be helpful to become acquainted with the Isohedral tilings.  The ultimate reference on the subject is the book _Tilings and Patterns_ by Grünbaum and Shephard.  You could also have a look at my book, [_Introductory Tiling Theory for Computer Graphics_][https://www.morganclaypool.com/doi/abs/10.2200/S00207ED1V01Y200907CGR011], which is much slimmer and written more from a computer science viewpoint.  If you want a quick and free introduction, you could look through Chapters 2 and 4 of [my PhD thesis][http://www.cgl.uwaterloo.ca/csk/phd/].
 
 [phd]: http://www.cgl.uwaterloo.ca/csk/phd/
 [glm]: https://glm.g-truc.net/
