@@ -9,9 +9,13 @@ I will provide more complete documentation here in the near future.  In the mean
 
 The library is small and self-contained, and no special build instructions are required.  Simply make sure that `tactile.hpp` is in your include path, and that you can find the `GLM` headers.  Then compile `tactile.cpp` in with the rest of your code.  There's no need to worry explicitly about `tiling_arraydecl.inc`—that file is included by `tactile.cpp`.
 
-## Using Tactile
+## A crash course on isohedral tilings
 
 In order to understand how to use Tactile, it might first be helpful to become acquainted with the Isohedral tilings.  The ultimate reference on the subject is the book _Tilings and Patterns_ by Grünbaum and Shephard.  You could also have a look at my book, [_Introductory Tiling Theory for Computer Graphics_][mybook], which is much slimmer and written more from a computer science viewpoint.  If you want a quick and free introduction, you could look through Chapters 2 and 4 of [my PhD thesis][phd].
+
+Every isohedral tiling is made from repeated copies of a single shape called the _prototile_, which repeats in a very orderly way to fill the plane. We can describe the prototile's shape by breaking it into _tiling edges_, the shared boundaries between adjacent tiles, which connect at _tiling vertices_, the points where three or more tiles meet.  There are 93 "tiling types", different ways that tiles can relate to each other. Of these, 12 are boring for reasons I won't talk about here; this library lets you manipulate the other 81 types.
+
+For each isohedral tiling type, there are constraints on the legal relationships between the tiling vertices.  Those constraints are controlled by a set of _parameters_, which are just real numbers.  Some tiling types have zero parameters (their tiling vertices must form a fixed shape, like a square or a hexagon); others have as many as six free parameters.
 
 [phd]: http://www.cgl.uwaterloo.ca/csk/phd/
 [glm]: https://glm.g-truc.net/
