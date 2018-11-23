@@ -59,7 +59,7 @@ Setting the parameters causes a lot of internal data to be recomputed (efficient
 
 As discussed above, a prototile's outline can be thought of as a sequence of tiling edges running between consecutive tiling vertices. Of course, in order to tile the plane, some of those edges must be transformed copies of others, so that a tile can interlock with its neighbours.  In most tiling types, then, there are fewer distinct _edge shapes_ than there are edges, sometimes as few as a single path repeated all the way around the tile. Furthermore, some edge shapes can have internal symmetries forced upon it by the tiling: 
 
-<p align="center"><img src="images/jusi.png" height=150/></p>
+<p align="center"><img src="images/jusi.png" height=100/></p>
 
  * Some edges must look the same after a 180° rotation, like a letter S.  We call these **S** edges.
  * Some edges must look the same after reflecting across their length, like a letter U.  We call these **U** edges.
