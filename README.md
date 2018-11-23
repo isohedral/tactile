@@ -68,7 +68,7 @@ for( auto i : a_tiling.shape() ) {
     csk::U8 id = i->getId();
     // Get a 3x3 transformation matrix that moves the edge from canonical
     // position into its correct place around the tile boundary.
-    glm::mat3 T = i->getTransform();
+    glm::dmat3 T = i->getTransform();
     // Get the intrinsic shape constraints on this edge shape: Is it
     // J, U, S, or I?  Here, it's your responsibility to draw a path that
     // actually has those symmetries.
@@ -91,7 +91,7 @@ for( auto i : a_tiling.parts() ) {
     csk::U8 id = i->getId();
     // As above for J and I edges.  For U and S edges, include a scaling
     // operation to map to each half of the tiling edge in turn.
-    glm::mat3 T = i->getTransform();
+    glm::dmat3 T = i->getTransform();
     // As above
     csk::EdgeShape shape = i->getShape();
     // As above
@@ -109,6 +109,26 @@ When drawing a prototile's outline using `parts()`, a **U** edge's midpoint migh
 Note that there's nothing in the description above that knows how paths are represented. That's a deliberate design decision that keeps the library lightweight and adaptable to different sorts of curves.  It's up to you to maintain a set of canonical edge shapes that you can transform and string together to get the final tile outline. The demo programs offer examples of doing this for polygonal paths and cubic Béziers.
 
 ## Laying out tiles
+
+The core operation of tiling is to fill a region of the plane with copies of the prototile.  Tactile offers a simple iterator-based approach for doing this:
+
+```C++
+// Fill a rectangle given its bounds (xmin, ymin, xmax, ymax)
+for( auto i : a_tiling.fillRegion( 0.0, 0.0, 8.0, 5.0 ) {
+    // Get the 3x3 matrix corresponding to one of the transformed
+    // tiles in the filled region.
+    glm::dmat3 T = i->getTransform();
+    // Use a simple colouring algorithm to pick a colour for this tile
+    // so that adjacent tiles aren't the same colour.  The resulting
+    // value col will be 0, 1, or 2, which you should map to your
+    // three favourite colours.
+    csk::U8 col = a_tiling.getColour( i->getT1(), i->getT2(), i->getAspect() );
+}
+```
+
+There is an alternative form of `csk::IsohedralTiling::fillRegion()` that takes four points as arguments instead of bounds.
+
+The region filling algorithm isn't perfect.  It's difficult to compute exactly which tiles are needed to fill a given rectangle, at least with high efficiency.  It's possible you'll generate tiles that are completely outside the window, or leave unfilled fringes at the edge of the window.  The easiest remedy is to fill a larger region than you need and ignore the extra tiles.  In the future I may work on improving the algorithm, perhaps by including an option that performs the extra computation when requested.
 
 [phd]: http://www.cgl.uwaterloo.ca/csk/phd/
 [glm]: https://glm.g-truc.net/
