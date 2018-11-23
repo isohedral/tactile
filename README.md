@@ -24,7 +24,8 @@ The class `csk::IsohedralTiling` can be used to describe a specific tiling and i
 ```for( size_t idx = 0; idx < csk::num_types; ++idx ) {
     csk::IsohedralTiling a_tiling( csk::tiling_types[ idx ] );
     // Do something with this tiling type
-}```
+}
+```
 
 [phd]: http://www.cgl.uwaterloo.ca/csk/phd/
 [glm]: https://glm.g-truc.net/
