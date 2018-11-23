@@ -22,6 +22,7 @@ For each isohedral tiling type, there are constraints on the legal relationships
 The class `csk::IsohedralTiling` can be used to describe a specific tiling and its prototile.  It has a single constructor that takes the desired tiling type as an argument.  The tiling type is expressed as an integer representing a legal isohedral type.  These are all numbers between 1 and 93 (inclusive), but there are some holes—for example, there is no Type 19.  The array `csk::tiling_types`, with length `csk::num_types` (fixed at 81) contains the legal types:
 
 ```
+// Suppose you wanted to loop over all the tiling types...
 for( size_t idx = 0; idx < csk::num_types; ++idx ) {
     csk::IsohedralTiling a_tiling( csk::tiling_types[ idx ] );
     // Do something with this tiling type
