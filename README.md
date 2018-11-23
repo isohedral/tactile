@@ -31,17 +31,19 @@ for( size_t idx = 0; idx < csk::num_types; ++idx ) {
 
 ## Controlling parameters
 
-You can get and set the parameters that control the positions of the tiling vertices through an array of `double`s:
+You can get and set the parameters that control the positions of the tiling vertices through an array of `double`:
 
 ```
 size_t num_params = a_tiling.numParameters();
-double params[ num_params ];
-// Get the parameters out of the tiling
-a_tiling.getParameters( params );
-// Change a parameter
-params[ 1 ] += 1.0;
-// Send the parameters back to the tiling
-a_tiling.setParameters( params );
+if( num_params > 1 ) {
+    double params[ num_params ];
+    // Get the parameters out of the tiling
+    a_tiling.getParameters( params );
+    // Change a parameter
+    params[ 1 ] += 1.0;
+    // Send the parameters back to the tiling
+    a_tiling.setParameters( params );
+}
 ```
 
 Setting the parameters causes a lot of internal data to be recomputed, which is why all parameters should be set together in one function call.
