@@ -84,6 +84,28 @@ for( auto i : a_tiling.shape() ) {
 
 Occasionally, it's annoying to have to worry about the **U** or **S** symmetries of edges yourself.  Tactile offers an alternative way to describe the tile's outline that includes extra steps that account for these symmetries.  In this case, the transformation matrices will build in scaling operations that will map, say, a path from (0,0) to (1,0) to each half of an **S** edge separately.  The correct approach is to iterate over a tile's `parts()` rather than its `shape()`:
 
+```C++
+// Iterate over the tiling's edges, getting information about each edge
+for( auto i : a_tiling.parts() ) {
+    // As above.
+    csk::U8 id = i->getId();
+    // As above for J and I edges.  For U and S edges, include a scaling
+    // operation to map to each half of the tiling edge in turn.
+    glm::mat3 T = i->getTransform();
+    // As above
+    csk::EdgeShape shape = i->getShape();
+    // As above
+    bool rev = i->isReversed();
+    // For J and I edges, this is always false.  For U and S edges, this
+    // will be false for the first half of the edge and true for the second.
+    bool second = i->isSecondPart();
+    
+    // Do something with the information above...
+}
+```
+
+When drawing a prototile's outline using `parts()`, a **U** edge's midpoint might lie anywhere on the perpendicular bisector of the line joining two tiling vertices. For that reason, you are permitted to make an exception and have the underlying canonical path end at (1,_y_) for any _y_ value.
+
 ## Laying out tiles
 
 [phd]: http://www.cgl.uwaterloo.ca/csk/phd/
