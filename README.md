@@ -15,7 +15,16 @@ In order to understand how to use Tactile, it might first be helpful to become a
 
 Every isohedral tiling is made from repeated copies of a single shape called the _prototile_, which repeats in a very orderly way to fill the plane. We can describe the prototile's shape by breaking it into _tiling edges_, the shared boundaries between adjacent tiles, which connect at _tiling vertices_, the points where three or more tiles meet.  There are 93 "tiling types", different ways that tiles can relate to each other. Of these, 12 are boring for reasons I won't talk about here; this library lets you manipulate the other 81 types.
 
-For each isohedral tiling type, there are constraints on the legal relationships between the tiling vertices.  Those constraints are controlled by a set of _parameters_, which are just real numbers.  Some tiling types have zero parameters (their tiling vertices must form a fixed shape, like a square or a hexagon); others have as many as six free parameters.
+For each isohedral tiling type, there are constraints on the legal relationships between the tiling vertices.  Those constraints can be encoded in a set of _parameters_, which are just real numbers.  Some tiling types have zero parameters (their tiling vertices must form a fixed shape, like a square or a hexagon); others have as many as six free parameters.
+
+## Constructing a tiling
+
+The class `csk::IsohedralTiling` can be used to describe a specific tiling and its prototile.  It has a single constructor that takes the desired tiling type as an argument.  The tiling type is expressed as an integer representing a legal isohedral type.  These are all numbers between 1 and 93 (inclusive), but there are some holes—for example, there is no Type 19.  The array `csk::tiling_types`, with length `csk::num_types` (fixed at 81) contains the legal types:
+
+```for( size_t idx = 0; idx < csk::num_types; ++idx ) {
+    csk::IsohedralTiling a_tiling( csk::tiling_types[ idx ] );
+    // Do something with this tiling type
+}```
 
 [phd]: http://www.cgl.uwaterloo.ca/csk/phd/
 [glm]: https://glm.g-truc.net/
