@@ -21,7 +21,7 @@ For each isohedral tiling type, there are constraints on the legal relationships
 
 The class `csk::IsohedralTiling` can be used to describe a specific tiling and its prototile.  It has a single constructor that takes the desired tiling type as an argument.  The tiling type is expressed as an integer representing a legal isohedral type.  These are all numbers between 1 and 93 (inclusive), but there are some holes—for example, there is no Type 19.  The array `csk::tiling_types`, with length `csk::num_types` (fixed at 81) contains the legal types:
 
-```
+```C++
 // Suppose you wanted to loop over all the tiling types...
 for( size_t idx = 0; idx < csk::num_types; ++idx ) {
     csk::IsohedralTiling a_tiling( csk::tiling_types[ idx ] );
@@ -33,7 +33,7 @@ for( size_t idx = 0; idx < csk::num_types; ++idx ) {
 
 You can get and set the parameters that control the positions of the tiling vertices through a `double` array:
 
-```
+```C++
 size_t num_params = a_tiling.numParameters();
 if( num_params > 1 ) {
     double params[ num_params ];
@@ -48,9 +48,41 @@ if( num_params > 1 ) {
 
 Setting the parameters causes a lot of internal data to be recomputed (efficiently, but still), which is why all parameters should be set together in one function call.
 
-## Reading out the shape of the prototile
+## Prototile shape
 
-A tile's outline
+As discussed above, a prototile's outline can be thought of as a sequence of tiling edges running between consecutive tiling vertices. Of course, in order to tile the plane, some of those edges must be transformed copies of others, so that a tile can interlock with its neighbours.  In most tiling types, then, there are fewer distinct _edge shapes_ than there are edges, sometimes as few as a single path repeated all the way around the tile. Furthermore, some edge shapes can have internal symmetries forced upon it by the tiling: 
+
+ * Some edges must look the same after a 180° rotation, like a letter S.  We call these **S** edges.
+ * Some edges must look the same after reflecting across their length, like a letter U.  We call these **U** edges.
+ * Some edges must look the same after both rotation _and_ reflection. Only a straight line has this property, so we call these **I** edges.
+ * All other edges can be a path of any shape.  We call these **J** edges.
+ 
+Tactile assumes that an edge shape lives in a canonical coordinate system, as a path that starts at (0,0) and ends at (1,0). The library will then tell you the transformations you need to perform in order to map those canonical edges into position around the prototile's boundary. You can access this information by looping over the tiling edges using a C++ iterator:
+
+```C++
+// Iterate over the tiling's edges, getting information about each edge
+for( auto i : a_tiling.shape() ) {
+    // Determine which canonical edge shape to use for this tiling edge.
+    // Multiple edges will have the same ID, indicating that the edge shape is
+    // reused multiple times.
+    csk::U8 id = i->getId();
+    // Get a 3x3 transformation matrix that moves the edge from canonical
+    // position into its correct place around the tile boundary.
+    glm::mat3 T = i->getTransform();
+    // Get the intrinsic shape constraints on this edge shape: Is it
+    // J, U, S, or I?  Here, it's your responsibility to draw a path that
+    // actually has those symmetries.
+    csk::EdgeShape shape = i->getShape();
+    // When edges interlock, one copy must be parameterized backwards 
+    // to fit with the rest of the prototile outline.  This boolean
+    // tells you whether you need to do that.
+    bool rev = i->isReversed();
+    
+    // Do something with the information above...
+}
+```
+
+Occasionally, it's annoying to have to worry about the **U** or **S** symmetries of edges yourself.  Tactile offers an alternative way to describe the tile's outline that includes extra steps that account for these symmetries.  In this case, the transformation matrices will build in scaling operations that will map, say, a path from (0,0) to (1,0) to each half of an **S** edge separately.  The correct approach is to iterate over a tile's `parts()` rather than its `shape()`:
 
 ## Laying out tiles
 
