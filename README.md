@@ -31,7 +31,7 @@ for( size_t idx = 0; idx < csk::num_types; ++idx ) {
 
 ## Controlling parameters
 
-You can get and set the parameters that control the positions of the tiling vertices through an array of `double`:
+You can get and set the parameters that control the positions of the tiling vertices through a `double` array:
 
 ```
 size_t num_params = a_tiling.numParameters();
@@ -46,7 +46,13 @@ if( num_params > 1 ) {
 }
 ```
 
-Setting the parameters causes a lot of internal data to be recomputed, which is why all parameters should be set together in one function call.
+Setting the parameters causes a lot of internal data to be recomputed (efficiently, but still), which is why all parameters should be set together in one function call.
+
+## Reading out the shape of the prototile
+
+A tile's outline
+
+## Laying out tiles
 
 [phd]: http://www.cgl.uwaterloo.ca/csk/phd/
 [glm]: https://glm.g-truc.net/
