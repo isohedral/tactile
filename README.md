@@ -15,11 +15,13 @@ In order to understand how to use Tactile, it might first be helpful to become a
 
 Every isohedral tiling is made from repeated copies of a single shape called the _prototile_, which repeats in a very orderly way to fill the plane. We can describe the prototile's shape by breaking it into _tiling edges_, the shared boundaries between adjacent tiles, which connect at _tiling vertices_, the points where three or more tiles meet.
 
-<p align="center"><img src="images/topo.png" height=300/></p>
+<p align="center"><img src="images/topo.png" height=200/></p>
 
 There are 93 "tiling types", different ways that tiles can relate to each other. Of these, 12 are boring for reasons I won't talk about here; this library lets you manipulate the other 81 types.
 
 For each isohedral tiling type, there are constraints on the legal relationships between the tiling vertices.  Those constraints can be encoded in a set of _parameters_, which are just real numbers.  Some tiling types have zero parameters (their tiling vertices must form a fixed shape, like a square or a hexagon); others have as many as six free parameters.
+
+<p align="center"><img src="images/params.png" height=150/></p>
 
 ## Constructing a tiling
 
