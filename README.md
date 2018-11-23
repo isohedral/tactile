@@ -24,6 +24,7 @@ The class `csk::IsohedralTiling` can be used to describe a specific tiling and i
 ```C++
 // Suppose you wanted to loop over all the tiling types...
 for( size_t idx = 0; idx < csk::num_types; ++idx ) {
+    // Create a new tiling of the given type, with default shape.
     csk::IsohedralTiling a_tiling( csk::tiling_types[ idx ] );
     // Do something with this tiling type
 }
