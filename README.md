@@ -130,6 +130,10 @@ There is an alternative form of `csk::IsohedralTiling::fillRegion()` that takes 
 
 The region filling algorithm isn't perfect.  It's difficult to compute exactly which tiles are needed to fill a given rectangle, at least with high efficiency.  It's possible you'll generate tiles that are completely outside the window, or leave unfilled fringes at the edge of the window.  The easiest remedy is to fill a larger region than you need and ignore the extra tiles.  In the future I may work on improving the algorithm, perhaps by including an option that performs the extra computation when requested.
 
+## In closing
+
+I hope you find this library to be useful.  If you are using Tactile for research, for fun, or for commercial products, I would appreciate it if you'd let me know.  I'd be happy to list projects based on Tactile here, and it helps my research agenda to be able to say that the library is getting used.  Thank you.
+
 [phd]: http://www.cgl.uwaterloo.ca/csk/phd/
 [glm]: https://glm.g-truc.net/
 [glfw]: https://www.glfw.org/
