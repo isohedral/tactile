@@ -151,4 +151,4 @@ I hope you find this library to be useful.  If you are using Tactile for researc
 [nanovg]: https://github.com/memononen/nanovg
 [imgui]: https://github.com/ocornut/imgui
 [tactilejs]: https://github.com/isohedral/tactile-js
-[mybook]: https://www.morganclaypool.com/doi/abs/10.2200/S00207ED1V01Y200907CGR011]
+[mybook]: https://www.amazon.com/Introductory-Computer-Graphics-Synthesis-Animation/dp/1608450171]
