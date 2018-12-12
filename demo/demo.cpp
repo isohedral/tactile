@@ -661,7 +661,7 @@ int main()
 	setTilingType();
 
 	while( !glfwWindowShouldClose( window ) ) {
-		glfwPollEvents();
+		glfwWaitEvents();
 
 		// Draw the ImGui interface
 
