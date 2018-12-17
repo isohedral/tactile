@@ -125,7 +125,7 @@ The core operation of tiling is to fill a region of the plane with copies of the
 
 ```C++
 // Fill a rectangle given its bounds (xmin, ymin, xmax, ymax)
-for( auto i : a_tiling.fillRegion( 0.0, 0.0, 8.0, 5.0 ) {
+for( auto i : a_tiling.fillRegion( 0.0, 0.0, 8.0, 5.0 ) ) {
     // Get the 3x3 matrix corresponding to one of the transformed
     // tiles in the filled region.
     glm::dmat3 T = i->getTransform();
