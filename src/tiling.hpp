@@ -243,7 +243,9 @@ public:
 		const glm::dvec2& A, const glm::dvec2& B, 
 		const glm::dvec2& C, const glm::dvec2& D, bool dbg = false ) const;
 	U8 getColour( int t1, int t2, U8 aspect ) const;
-
+	
+	const TilingTypeData *getRawTypeData() const;
+	
 private:
 	void recompute();
 
@@ -512,6 +514,11 @@ inline const glm::dvec2& IsohedralTiling::getT1() const
 inline const glm::dvec2& IsohedralTiling::getT2() const
 {
 	return t2;
+}
+	
+inline const TilingTypeData *IsohedralTiling::getRawTypeData() const
+{
+    return ttd;
 }
 
 inline TileShapeIterator IsohedralTiling::beginShape() const
