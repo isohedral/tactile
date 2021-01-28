@@ -145,7 +145,7 @@ The region filling algorithm isn't perfect.  It's difficult to compute exactly w
 
 I hope you find this library to be useful.  If you are using Tactile for research, for fun, or for commercial products, I would appreciate it if you'd let me know.  I'd be happy to list projects based on Tactile here, and it helps my research agenda to be able to say that the library is getting used.  Thank you.
 
-[phd]: http://www.cgl.uwaterloo.ca/csk/phd/
+[phd]: https://cs.uwaterloo.ca/~csk/other/phd/
 [glm]: https://glm.g-truc.net/
 [glfw]: https://www.glfw.org/
 [nanovg]: https://github.com/memononen/nanovg
