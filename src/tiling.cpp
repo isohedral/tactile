@@ -276,7 +276,7 @@ void FillRegionIterator::inc()
 	if( call_idx < algo.num_calls ) {
 		xlo = algo.data[call_idx].xlo;
 		xhi = algo.data[call_idx].xhi;
-		y = floor( algo.data[call_idx].ymin );
+		y = std::max( y, floor( algo.data[call_idx].ymin ) );
 		x = floor( algo.data[call_idx].xlo );
 		return;
 	}
